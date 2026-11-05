@@ -92,7 +92,7 @@ class CartScreen extends StatelessWidget {
                   border: Border(top: BorderSide(color: Colors.grey.shade200)),
                 ),
                 child: Column(mainAxisSize: MainAxisSize.min, children: [
-                  _row('Subtotal (${session.cartCount} items)', money(session.cartSubtotal)),
+                  _row('Subtotal (${session.cartCount} ${session.cartCount == 1 ? 'item' : 'items'})', money(session.cartSubtotal)),
                   _row('Shipping', money(OrderService.shippingFee)),
                   const Divider(),
                   _row('Total', money(session.cartSubtotal + OrderService.shippingFee), bold: true),

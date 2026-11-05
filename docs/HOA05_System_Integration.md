@@ -65,6 +65,7 @@ Tools used: the VS Code Debug Console, Flutter logs, `flutter analyze`, the Fire
 | 10 | Dashboard data | The Users card showed 1 when 2 accounts existed | The card counted only non-admin accounts | The card now counts every account |
 | 11 | Dashboard layout | The new scrollbar covered the bottom table row | The table had no space beneath it | Added 12 px of padding under the table |
 | 12 | Dashboard wording | The cancel dialog showed "Cancel" beside "Cancel order" | The dialog used its default button label | Renamed the button to "Keep order" |
+| 13 | App wording | The cart showed "Subtotal (1 items)" | The label always used the plural | The label now reads "1 item" for one item |
 
 ### Problems prevented in the code
 

@@ -45,5 +45,8 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 
+# Release APKs for submission (too large for the repository)
+/release/
+
 # Widget Preview related
 .widget_preview/

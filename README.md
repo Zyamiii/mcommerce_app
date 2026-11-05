@@ -27,6 +27,8 @@ To give an account admin access, open **Firestore → users**, select the accoun
 
 ## Deploy
 
+The admin dashboard is live at <https://shopease-mcommerce.web.app>.
+
 ```bash
 firebase deploy --only firestore:rules                       # security rules
 flutter build web -t lib/main_admin.dart -o build/web_admin  # admin dashboard
