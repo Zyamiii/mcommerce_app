@@ -9,6 +9,7 @@ import '../../providers/session_provider.dart';
 import '../../services/user_service.dart';
 import '../../widgets/common_widgets.dart';
 import '../widgets/admin_widgets.dart';
+import '../../utils/theme.dart';
 
 class UsersScreen extends StatefulWidget {
   const UsersScreen({super.key});
@@ -78,7 +79,6 @@ class _UsersScreenState extends State<UsersScreen> {
             ),
             TableCard(
               table: DataTable(
-                headingRowColor: WidgetStatePropertyAll(Colors.grey.shade50),
                 columnSpacing: 24,
                 columns: const [
                   DataColumn(label: Text('Name')),
@@ -105,7 +105,7 @@ class _UsersScreenState extends State<UsersScreen> {
                           Chip(
                             label: Text(u.isAdmin ? 'Admin' : 'User'),
                             visualDensity: VisualDensity.compact,
-                            backgroundColor: u.isAdmin ? Colors.purple.shade50 : null,
+                            backgroundColor: u.isAdmin ? Palette.oliveTint : null,
                           ),
                           if (u.uid != myUid)
                             IconButton(

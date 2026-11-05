@@ -66,6 +66,9 @@ Tools used: the VS Code Debug Console, Flutter logs, `flutter analyze`, the Fire
 | 11 | Dashboard layout | The new scrollbar covered the bottom table row | The table had no space beneath it | Added 12 px of padding under the table |
 | 12 | Dashboard wording | The cancel dialog showed "Cancel" beside "Cancel order" | The dialog used its default button label | Renamed the button to "Keep order" |
 | 13 | App wording | The cart showed "Subtotal (1 items)" | The label always used the plural | The label now reads "1 item" for one item |
+| 14 | New design | Turning the phone sideways hid the products behind the navigation bar | The layout is built for a phone held upright | Locked the customer app to portrait |
+| 15 | New design | The back arrow was hard to see over the photo, and some screens had a grey status bar | Light icons sat on a bright image, and Android added its default status bar tint | Added a dark fade over the photo and made the status bar transparent |
+| 16 | Hosting | A browser kept showing the old dashboard after a new deploy | Firebase Hosting let browsers keep app files for one hour | Added no-cache headers in `firebase.json` |
 
 ### Problems prevented in the code
 

@@ -8,6 +8,8 @@ import '../../models/product.dart';
 import '../../services/product_service.dart';
 import '../../widgets/common_widgets.dart';
 import '../widgets/admin_widgets.dart';
+import '../../utils/theme.dart';
+import '../../widgets/motion.dart';
 
 class ProductsScreen extends StatefulWidget {
   const ProductsScreen({super.key});
@@ -35,7 +37,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
       showSnack(context, 'Create a category first.', error: true);
       return;
     }
-    await showDialog(context: context, builder: (_) => ProductFormDialog(categories: cats, product: p));
+    await showAppDialog(context: context, builder: (_) => ProductFormDialog(categories: cats, product: p));
   }
 
   Future<void> _delete(Product p) async {
@@ -107,7 +109,6 @@ class _ProductsScreenState extends State<ProductsScreen> {
               else
                 TableCard(
                   table: DataTable(
-                    headingRowColor: WidgetStatePropertyAll(Colors.grey.shade50),
                     dataRowMinHeight: 64,
                     dataRowMaxHeight: 64,
                     columns: const [
@@ -134,7 +135,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
                           DataCell(Text('${p.stock}',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                color: p.stock == 0 ? Colors.red : p.stock <= 5 ? Colors.orange.shade800 : null,
+                                color: p.stock == 0 ? Palette.clay : p.stock <= 5 ? const Color(0xFF9A6410) : null,
                               ))),
                           DataCell(Switch(
                             value: p.isActive,
@@ -142,7 +143,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
                           )),
                           DataCell(Row(mainAxisSize: MainAxisSize.min, children: [
                             IconButton(tooltip: 'Edit', icon: const Icon(Icons.edit_outlined), onPressed: () => _openForm(cats, p)),
-                            IconButton(tooltip: 'Delete', icon: const Icon(Icons.delete_outline, color: Colors.red), onPressed: () => _delete(p)),
+                            IconButton(tooltip: 'Delete', icon: const Icon(Icons.delete_outline, color: Palette.clay), onPressed: () => _delete(p)),
                           ])),
                         ]),
                     ],

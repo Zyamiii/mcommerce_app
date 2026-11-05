@@ -35,7 +35,7 @@ class AdminGate extends StatelessWidget {
           icon: Icons.lock_outline,
           title: 'Access denied',
           message: '${session.authUser?.email} is not an administrator.\n'
-              'Set role = "admin" on this user in Firestore (users collection).',
+              'Ask an administrator for access.',
           action: FilledButton(
             onPressed: () => context.read<AuthService>().signOut(),
             child: const Text('Sign out'),

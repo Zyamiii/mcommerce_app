@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../services/auth_service.dart';
+import '../utils/theme.dart';
 import '../widgets/common_widgets.dart';
+import '../widgets/motion.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -55,6 +57,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
+              const Reveal(
+                child: Padding(
+                  padding: EdgeInsets.only(bottom: 20),
+                  child: Text('Join ShopEase and start shopping in a minute.',
+                      style: TextStyle(fontSize: 16, color: Palette.muted)),
+                ),
+              ),
               TextFormField(
                 controller: _name,
                 textCapitalization: TextCapitalization.words,
@@ -85,9 +94,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
               const SizedBox(height: 24),
               FilledButton(
                 onPressed: _busy ? null : _submit,
-                child: _busy
-                    ? const SizedBox(width: 22, height: 22, child: CircularProgressIndicator(strokeWidth: 2))
-                    : const Text('Create account'),
+                child: AnimatedSwitcher(
+                  duration: Motion.fast,
+                  child: _busy
+                      ? const ButtonSpinner(key: ValueKey('busy'))
+                      : const Text('Create account', key: ValueKey('label')),
+                ),
               ),
             ],
           ),

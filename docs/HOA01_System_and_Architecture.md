@@ -76,6 +76,7 @@ mcommerce_app/
 | Database | `cloud_firestore` | Real-time NoSQL, offline cache |
 | State management | `provider` | Simple and officially recommended |
 | Formatting | `intl` | ₱ currency and date formatting |
+| Design | Barlow font, custom theme and `lib/widgets/motion.dart` | One look and one animation timing across both apps |
 
 ## 5. Functional requirements
 

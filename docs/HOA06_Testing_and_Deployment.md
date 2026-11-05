@@ -66,7 +66,17 @@ Changing data from the Admin app on the phone was not tested. Those changes were
 |---|---|---|---|---|
 | 13 | Wording | The cart showed "Subtotal (1 items)" | The label always used the plural | The label now reads "1 item" for one item |
 
-Bugs 1 to 12 are listed in the HOA05 debugging report.
+Bugs 1 to 12 are listed in the HOA05 debugging report, along with bugs 14 to 16, which were found during the redesign.
+
+### Testing after the redesign
+
+The whole system received a new design with animations after this checklist was first completed. These checks were repeated on the new design, and all passed. The final release build ran a full Cash on Delivery order, sign-in, search and profile editing; the other checks ran on the build just before it, which differed only in small visual fixes:
+
+- Phone: sign in, wrong password, forgot password messages, sign out, shop, search, quick add, cart buttons, product details, GCash and Cash on Delivery orders, order tracker, order history, profile editing, and the signed-in Admin app
+- Chrome: product add, edit, hide and delete, form validation, status change, cancelling, role change, and user search
+- Live site: new design loads, and a non-admin account gets "Access denied"
+
+Card payment and category add, rename and delete were not repeated. Their logic did not change. Registering a new account was repeated on the final build while recording the backup demo video.
 
 ## 2. User testing
 
@@ -116,7 +126,7 @@ A release build is about a third of the size of a debug build:
 | Debug | 151 MB |
 | Release | 52.6 MB |
 
-The ShopEase release build is 51.3 MB.
+The ShopEase release build is 51.7 MB. The Barlow font is included in the app, under the SIL Open Font License.
 
 The build also removed unused icons, reducing the icon font by 99.6% (from 1,645,184 to 5,860 bytes).
 

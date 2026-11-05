@@ -6,6 +6,8 @@ import '../../models/order.dart';
 import '../../services/order_service.dart';
 import '../../widgets/common_widgets.dart';
 import '../widgets/admin_widgets.dart';
+import '../../utils/theme.dart';
+import '../../widgets/motion.dart';
 
 class AdminOrdersScreen extends StatefulWidget {
   const AdminOrdersScreen({super.key});
@@ -88,7 +90,6 @@ class _AdminOrdersScreenState extends State<AdminOrdersScreen> {
           else
             TableCard(
               table: DataTable(
-                headingRowColor: WidgetStatePropertyAll(Colors.grey.shade50),
                 showCheckboxColumn: false,
                 columnSpacing: 24,
                 columns: const [
@@ -103,14 +104,14 @@ class _AdminOrdersScreenState extends State<AdminOrdersScreen> {
                 rows: [
                   for (final o in rows)
                     DataRow(
-                      onSelectChanged: (_) => showDialog(context: context, builder: (_) => _OrderDialog(order: o)),
+                      onSelectChanged: (_) => showAppDialog(context: context, builder: (_) => _OrderDialog(order: o)),
                       cells: [
                         DataCell(Text('#${shortId(o.id)}', style: const TextStyle(fontWeight: FontWeight.bold))),
                         DataCell(Text(dateTime(o.timestamp))),
                         DataCell(Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [Text(o.customerName), Text(o.customerEmail, style: TextStyle(fontSize: 12, color: Colors.grey.shade600))],
+                          children: [Text(o.customerName), Text(o.customerEmail, style: TextStyle(fontSize: 12, color: Palette.muted))],
                         )),
                         DataCell(ConstrainedBox(
                           constraints: const BoxConstraints(maxWidth: 260),
@@ -188,7 +189,7 @@ class _OrderDialog extends StatelessWidget {
   Widget _kv(String k, String v, {bool bold = false}) => Padding(
         padding: const EdgeInsets.symmetric(vertical: 3),
         child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          SizedBox(width: 90, child: Text(k, style: TextStyle(color: Colors.grey.shade600))),
+          SizedBox(width: 90, child: Text(k, style: TextStyle(color: Palette.muted))),
           Expanded(child: Text(v, style: TextStyle(fontWeight: bold ? FontWeight.bold : FontWeight.normal))),
         ]),
       );

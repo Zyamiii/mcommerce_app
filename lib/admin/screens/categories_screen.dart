@@ -6,6 +6,8 @@ import '../../models/product.dart';
 import '../../services/product_service.dart';
 import '../../widgets/common_widgets.dart';
 import '../widgets/admin_widgets.dart';
+import '../../utils/theme.dart';
+import '../../widgets/motion.dart';
 
 class CategoriesScreen extends StatefulWidget {
   const CategoriesScreen({super.key});
@@ -28,7 +30,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
 
   Future<String?> _askName({String initial = '', required String title}) {
     final ctrl = TextEditingController(text: initial);
-    return showDialog<String>(
+    return showAppDialog<String>(
       context: context,
       builder: (c) => AlertDialog(
         title: Text(title),
@@ -99,7 +101,6 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
             else
               TableCard(
                 table: DataTable(
-                  headingRowColor: WidgetStatePropertyAll(Colors.grey.shade50),
                   columns: const [
                     DataColumn(label: Text('Name')),
                     DataColumn(label: Text('Products'), numeric: true),
@@ -116,7 +117,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                             IconButton(tooltip: 'Rename', icon: const Icon(Icons.edit_outlined), onPressed: () => _rename(c)),
                             IconButton(
                               tooltip: 'Delete',
-                              icon: const Icon(Icons.delete_outline, color: Colors.red),
+                              icon: const Icon(Icons.delete_outline, color: Palette.clay),
                               onPressed: () => _delete(c, count),
                             ),
                           ])),

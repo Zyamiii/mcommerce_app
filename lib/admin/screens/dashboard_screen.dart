@@ -10,6 +10,8 @@ import '../../services/product_service.dart';
 import '../../services/user_service.dart';
 import '../../widgets/common_widgets.dart';
 import '../widgets/admin_widgets.dart';
+import '../../utils/theme.dart';
+import '../../widgets/motion.dart';
 
 class DashboardScreen extends StatefulWidget {
   final ValueChanged<int> onNavigate;
@@ -21,6 +23,8 @@ class DashboardScreen extends StatefulWidget {
 
 class _DashboardScreenState extends State<DashboardScreen> {
   static const lowStockThreshold = 5;
+
+  static String _whole(double v) => v.round().toString();
 
   late final Stream<List<AppOrder>> _orders;
   late final Stream<List<Product>> _products;
@@ -77,12 +81,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
       ..sort((a, b) => a.stock.compareTo(b.stock));
 
     final stats = [
-      StatCard(label: 'Gross sales', value: money(revenue), icon: Icons.payments_outlined, color: Colors.green, onTap: () => widget.onNavigate(3)),
-      StatCard(label: 'Delivered sales', value: money(delivered), icon: Icons.local_shipping_outlined, color: Colors.teal, onTap: () => widget.onNavigate(3)),
-      StatCard(label: 'Total orders', value: '${orders.length}', icon: Icons.receipt_long_outlined, color: Colors.blue, onTap: () => widget.onNavigate(3)),
-      StatCard(label: 'Pending orders', value: '$pending', icon: Icons.hourglass_top, color: Colors.orange, onTap: () => widget.onNavigate(3)),
-      StatCard(label: 'Products', value: '${products.length}', icon: Icons.inventory_2_outlined, color: Colors.purple, onTap: () => widget.onNavigate(1)),
-      StatCard(label: 'Users', value: '${users.length}', icon: Icons.people_outline, color: Colors.indigo, onTap: () => widget.onNavigate(4)),
+      StatCard(label: 'Gross sales', value: money(revenue), count: revenue, format: money, icon: Icons.payments_outlined, featured: true, onTap: () => widget.onNavigate(3)),
+      StatCard(label: 'Delivered sales', value: money(delivered), count: delivered, format: money, icon: Icons.local_shipping_outlined, onTap: () => widget.onNavigate(3)),
+      StatCard(label: 'Total orders', value: '${orders.length}', count: orders.length.toDouble(), format: _whole, icon: Icons.receipt_long_outlined, onTap: () => widget.onNavigate(3)),
+      StatCard(label: 'Pending orders', value: '$pending', count: pending.toDouble(), format: _whole, icon: Icons.hourglass_top, onTap: () => widget.onNavigate(3)),
+      StatCard(label: 'Products', value: '${products.length}', count: products.length.toDouble(), format: _whole, icon: Icons.inventory_2_outlined, onTap: () => widget.onNavigate(1)),
+      StatCard(label: 'Users', value: '${users.length}', count: users.length.toDouble(), format: _whole, icon: Icons.people_outline, onTap: () => widget.onNavigate(4)),
     ];
 
     return ListView(
@@ -107,7 +111,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
             return Wrap(
               spacing: 16,
               runSpacing: 16,
-              children: [for (final s in stats) SizedBox(width: w, child: s)],
+              children: [
+                for (var i = 0; i < stats.length; i++)
+                  SizedBox(width: w, child: Reveal(delay: Motion.stagger(i), child: stats[i])),
+              ],
             );
           }),
         ),
@@ -177,7 +184,7 @@ class _RecentOrders extends StatelessWidget {
                   ListTile(
                     contentPadding: EdgeInsets.zero,
                     title: Text('#${shortId(o.id)} • ${o.customerName}'),
-                    subtitle: Text('${dateTime(o.timestamp)} • ${o.itemCount} item(s)'),
+                    subtitle: Text('${dateTime(o.timestamp)} • ${o.itemCount} ${o.itemCount == 1 ? 'item' : 'items'}'),
                     trailing: Row(mainAxisSize: MainAxisSize.min, children: [
                       Text(money(o.total), style: const TextStyle(fontWeight: FontWeight.w600)),
                       const SizedBox(width: 12),
@@ -212,7 +219,7 @@ class _StatusBreakdown extends StatelessWidget {
                       value: n / total,
                       minHeight: 10,
                       color: StatusChip.colorFor(s),
-                      backgroundColor: Colors.grey.shade200,
+                      backgroundColor: Palette.line,
                     ),
                   ),
                 ),
@@ -243,7 +250,7 @@ class _LowStock extends StatelessWidget {
                     leading: ProductImage(p.imageUrl, size: 40),
                     title: Text(p.productName, overflow: TextOverflow.ellipsis),
                     trailing: Text(p.stock == 0 ? 'Out' : '${p.stock} left',
-                        style: TextStyle(color: p.stock == 0 ? Colors.red : Colors.orange.shade800, fontWeight: FontWeight.bold)),
+                        style: TextStyle(color: p.stock == 0 ? Palette.clay : const Color(0xFF9A6410), fontWeight: FontWeight.bold)),
                   ),
               ]),
       );
