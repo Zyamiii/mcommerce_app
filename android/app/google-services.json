@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "118589330923",
+    "firebase_url": "https://shopease-mcommerce-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "shopease-mcommerce",
+    "storage_bucket": "shopease-mcommerce.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:118589330923:android:f326713e9d6b7cfab675ae",
+        "android_client_info": {
+          "package_name": "com.hoa.mcommerce_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-aH6-8uNEARWUlIgfYtlyFUdNpkuF5Cs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

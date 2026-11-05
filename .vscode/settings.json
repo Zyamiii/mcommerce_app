@@ -1,0 +1,10 @@
+{
+    "gradle.autoDetect": "off",
+    "java.gradle.buildServer.enabled": "off",
+
+    // Flutter builds Android itself; stop the Gradle Kotlin extension from
+    // running "gradle tasks" on android/ every time the folder opens.
+    "gradleKotlin.taskDiscovery.autoHydrateOnActivation": "never",
+    "gradleKotlin.codeLens.enabled": false,
+    "gradleKotlin.versionInlayHints.checkLatest": false
+}

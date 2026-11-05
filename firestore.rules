@@ -1,0 +1,107 @@
+rules_version = '2';
+
+// ShopEase m-commerce: Cloud Firestore security rules (HOA02, Step 10)
+//
+// Objective from the module:
+//   - Only authenticated users can access data.
+//   - Only admin can modify products.
+//
+// Roles (RBAC): every account has users/{uid}.role = 'user' | 'admin'.
+// Users can only touch their own profile, cart and orders.
+// Admins (web dashboard) manage products, categories, orders and roles.
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(uid) {
+      return signedIn() && request.auth.uid == uid;
+    }
+
+    function isAdmin() {
+      return signedIn()
+        && exists(/databases/$(database)/documents/users/$(request.auth.uid))
+        && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+    }
+
+    function changedOnly(fields) {
+      return request.resource.data.diff(resource.data).affectedKeys().hasOnly(fields);
+    }
+
+    // HOA05 Step 3: reject empty fields, negative prices and invalid stock.
+    function validProduct() {
+      let p = request.resource.data;
+      return p.productName is string && p.productName.size() > 0
+        && p.description is string && p.description.size() > 0
+        && p.imageUrl is string && p.imageUrl.size() > 0
+        && p.price is number && p.price > 0
+        && p.stock is int && p.stock >= 0;
+    }
+
+    // HOA05 Step 4: reject orders with no items or an incorrect total.
+    function validOrder() {
+      let o = request.resource.data;
+      return o.userId == request.auth.uid
+        && o.status == 'pending'
+        && o.items is list && o.items.size() > 0
+        && o.subtotal is number && o.subtotal > 0
+        && o.shippingFee is number && o.shippingFee >= 0
+        && o.total == o.subtotal + o.shippingFee;
+    }
+
+    // ---------- users ----------
+    match /users/{uid} {
+      allow read: if isOwner(uid) || isAdmin();
+
+      // Self-registration always creates a normal user.
+      allow create: if isOwner(uid)
+        && request.resource.data.role == 'user'
+        && request.resource.data.email == request.auth.token.email;
+
+      // Users edit their own profile but can never change their role.
+      allow update: if (isOwner(uid) && changedOnly(['name', 'phone', 'address']))
+        || isAdmin();
+
+      allow delete: if isAdmin();
+
+      // Cart: users/{uid}/cart/{productId}
+      match /cart/{productId} {
+        allow read, write: if isOwner(uid);
+      }
+    }
+
+    // ---------- catalog ----------
+    match /categories/{categoryId} {
+      allow read: if signedIn();
+      allow write: if isAdmin();
+    }
+
+    match /products/{productId} {
+      allow read: if signedIn();
+      allow create: if isAdmin() && validProduct();
+      allow delete: if isAdmin();
+
+      // Only an admin edits product details. The one exception is checkout:
+      // a signed-in user's order transaction may lower stock, and nothing
+      // else, never below zero. Without it, placing an order could not
+      // update stock (that would need paid Cloud Functions).
+      allow update: if (isAdmin() && validProduct())
+        || (signedIn()
+            && changedOnly(['stock'])
+            && request.resource.data.stock is int
+            && request.resource.data.stock >= 0
+            && request.resource.data.stock < resource.data.stock);
+    }
+
+    // ---------- orders ----------
+    match /orders/{orderId} {
+      allow read: if isAdmin() || (signedIn() && resource.data.userId == request.auth.uid);
+      allow create: if signedIn() && validOrder();
+
+      // Only the admin dashboard moves orders through their lifecycle.
+      allow update, delete: if isAdmin();
+    }
+  }
+}
