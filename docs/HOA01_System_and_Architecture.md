@@ -1,5 +1,7 @@
 # HOA01: M-Commerce System and Architecture Setup
 
+**Group:** Hamaza
+
 ## 1. System overview
 
 **ShopEase** is a mobile commerce (m-commerce) system with two client applications that share one cloud backend:
@@ -89,3 +91,4 @@ mcommerce_app/
 4. Added the packages: `flutter pub add firebase_core firebase_auth cloud_firestore provider intl`.
 5. Installed the tooling: `npm i -g firebase-tools` and `dart pub global activate flutterfire_cli`.
 6. Checked the setup with `flutter analyze`, `flutter test` and `flutter build web`.
+7. Tested on a physical Android phone (Android 13) connected by USB, instead of an emulator.

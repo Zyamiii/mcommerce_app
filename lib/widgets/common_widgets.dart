@@ -27,6 +27,9 @@ class ProductImage extends StatelessWidget {
               width: size,
               height: size,
               fit: BoxFit.cover,
+              // Many image hosts block direct web requests (CORS). This falls
+              // back to a browser <img> element so those images still show.
+              webHtmlElementStrategy: WebHtmlElementStrategy.fallback,
               errorBuilder: (_, _, _) => placeholder,
               loadingBuilder: (_, child, progress) => progress == null ? child : placeholder,
             ),

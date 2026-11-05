@@ -7,6 +7,10 @@ plugins {
     id("dev.flutter.flutter-gradle-plugin")
 }
 
+// Building lib/main_admin.dart installs the dashboard as a separate app, so it
+// can sit next to the ShopEase user app instead of replacing it.
+val isAdminBuild = (project.findProperty("target") as String?)?.contains("main_admin") == true
+
 android {
     namespace = "com.hoa.mcommerce_app"
     compileSdk = flutter.compileSdkVersion
@@ -18,8 +22,8 @@ android {
     }
 
     defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId = "com.hoa.mcommerce_app"
+        applicationId = if (isAdminBuild) "com.hoa.mcommerce_app.admin" else "com.hoa.mcommerce_app"
+        manifestPlaceholders["appLabel"] = if (isAdminBuild) "ShopEase Admin" else "ShopEase"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdk = flutter.minSdkVersion

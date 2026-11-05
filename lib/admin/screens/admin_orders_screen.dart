@@ -28,7 +28,7 @@ class _AdminOrdersScreenState extends State<AdminOrdersScreen> {
   Future<void> _setStatus(AppOrder o, String status) async {
     if (status == OrderStatus.cancelled &&
         !await confirm(context, 'Cancel order?', 'Order #${shortId(o.id)} will be cancelled and its items returned to stock. '
-            'This cannot be undone.', action: 'Cancel order')) {
+            'This cannot be undone.', action: 'Cancel order', dismiss: 'Keep order')) {
       return;
     }
     if (!mounted) return;
@@ -90,6 +90,7 @@ class _AdminOrdersScreenState extends State<AdminOrdersScreen> {
               table: DataTable(
                 headingRowColor: WidgetStatePropertyAll(Colors.grey.shade50),
                 showCheckboxColumn: false,
+                columnSpacing: 24,
                 columns: const [
                   DataColumn(label: Text('Order')),
                   DataColumn(label: Text('Date')),

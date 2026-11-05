@@ -79,6 +79,7 @@ class _UsersScreenState extends State<UsersScreen> {
             TableCard(
               table: DataTable(
                 headingRowColor: WidgetStatePropertyAll(Colors.grey.shade50),
+                columnSpacing: 24,
                 columns: const [
                   DataColumn(label: Text('Name')),
                   DataColumn(label: Text('Email')),

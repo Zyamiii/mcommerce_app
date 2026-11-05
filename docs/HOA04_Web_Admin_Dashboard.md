@@ -3,6 +3,9 @@
 Run it with: `flutter run -d chrome -t lib/main_admin.dart`
 Build it with: `flutter build web -t lib/main_admin.dart -o build/web_admin`
 Publish it with: `firebase deploy --only hosting`
+Install it on an Android phone with: `flutter run -t lib/main_admin.dart`
+
+On Android, the dashboard installs as a separate app called **ShopEase Admin** (`com.hoa.mcommerce_app.admin`), so it sits next to the ShopEase user app. `android/app/build.gradle.kts` picks the app ID and name from the entry point being built.
 
 ## 1. Access control
 

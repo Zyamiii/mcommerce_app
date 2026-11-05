@@ -72,9 +72,25 @@ class StatCard extends StatelessWidget {
 }
 
 /// A Card holding a horizontally scrollable DataTable that fills the width.
-class TableCard extends StatelessWidget {
+///
+/// The scrollbar stays visible because a mouse wheel only scrolls vertically
+/// on web, so it is how a mouse user reaches columns past the right edge.
+class TableCard extends StatefulWidget {
   final DataTable table;
   const TableCard({super.key, required this.table});
+
+  @override
+  State<TableCard> createState() => _TableCardState();
+}
+
+class _TableCardState extends State<TableCard> {
+  final _scroll = ScrollController();
+
+  @override
+  void dispose() {
+    _scroll.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -82,23 +98,30 @@ class TableCard extends StatelessWidget {
       margin: const EdgeInsets.fromLTRB(24, 0, 24, 24),
       clipBehavior: Clip.antiAlias,
       child: LayoutBuilder(
-        builder: (context, c) => SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: ConstrainedBox(constraints: BoxConstraints(minWidth: c.maxWidth), child: table),
+        builder: (context, c) => Scrollbar(
+          controller: _scroll,
+          thumbVisibility: true,
+          child: SingleChildScrollView(
+            controller: _scroll,
+            scrollDirection: Axis.horizontal,
+            // Keeps the scrollbar from covering the last row.
+            padding: const EdgeInsets.only(bottom: 12),
+            child: ConstrainedBox(constraints: BoxConstraints(minWidth: c.maxWidth), child: widget.table),
+          ),
         ),
       ),
     );
   }
 }
 
-Future<bool> confirm(BuildContext context, String title, String message, {String action = 'Delete'}) async {
+Future<bool> confirm(BuildContext context, String title, String message, {String action = 'Delete', String dismiss = 'Cancel'}) async {
   final ok = await showDialog<bool>(
     context: context,
     builder: (c) => AlertDialog(
       title: Text(title),
       content: Text(message),
       actions: [
-        TextButton(onPressed: () => Navigator.pop(c, false), child: const Text('Cancel')),
+        TextButton(onPressed: () => Navigator.pop(c, false), child: Text(dismiss)),
         FilledButton(
           style: FilledButton.styleFrom(backgroundColor: Colors.red.shade600),
           onPressed: () => Navigator.pop(c, true),

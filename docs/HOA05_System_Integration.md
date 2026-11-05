@@ -59,6 +59,12 @@ Tools used: the VS Code Debug Console, Flutter logs, `flutter analyze`, the Fire
 | 4 | Tooling | VS Code: `Gradle task failed (exit 1)` | The Gradle Kotlin extension runs a check on the `android/` folder whenever the project opens | Turned off that automatic check in `.vscode/settings.json` |
 | 5 | Compile | `The getter 'name' isn't defined for the type 'Product'` | Renaming the field to `productName` missed the sort in `ProductService` | Found by `flutter analyze`; updated the sort |
 | 6 | Data | A product saved earlier used the old `name` field | The field was renamed after that product was created | The app still reads the old field, and saving the product in the dashboard replaces it with `productName` |
+| 7 | Web images | Product images were blank in Chrome but fine on the phone | The image host blocks direct web requests (CORS) | Set `ProductImage` to fall back to a browser image element with `WebHtmlElementStrategy.fallback` |
+| 8 | Firebase rules | `[cloud_firestore/permission-denied]` when cancelling an order | The product from error 6 failed `validProduct()` when its stock was returned | Saved the product in the dashboard, which moved it to `productName`; stock then returned from 65 to 66 |
+| 9 | Dashboard layout | The order Status dropdown and user Role buttons sat past the right edge | The tables were wider than the screen, and a mouse wheel only scrolls up and down | Added a visible scrollbar to `TableCard` and tightened the column spacing |
+| 10 | Dashboard data | The Users card showed 1 when 2 accounts existed | The card counted only non-admin accounts | The card now counts every account |
+| 11 | Dashboard layout | The new scrollbar covered the bottom table row | The table had no space beneath it | Added 12 px of padding under the table |
+| 12 | Dashboard wording | The cancel dialog showed "Cancel" beside "Cancel order" | The dialog used its default button label | Renamed the button to "Keep order" |
 
 ### Problems prevented in the code
 

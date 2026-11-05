@@ -99,7 +99,7 @@ The rules check the admin role server-side by reading `users/{uid}.role`, so a m
 
 ## 4. Firebase configuration steps
 
-1. Go to <https://console.firebase.google.com>, choose **Create a project**, and enter a name (for example `shopease-mcommerce`).
+1. Go to <https://console.firebase.google.com>, choose **Create a project**, and enter the name `shopease_mcommerce` (project ID: `shopease-mcommerce`).
 2. Open **Build → Authentication → Get started** and enable **Email/Password**.
 3. Open **Build → Firestore Database → Create database**, choose a location (`asia-southeast1` is Singapore, closest to PH), and select **production mode**.
 4. In the VS Code terminal, inside the project folder:

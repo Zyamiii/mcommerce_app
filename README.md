@@ -1,6 +1,6 @@
 # ShopEase: M-Commerce System
 
-ITE 7 group project: a mobile shopping app and a web admin dashboard that share one Firebase backend, built with Flutter.
+ITE 7 project by Group Hamaza: a mobile shopping app and a web admin dashboard that share one Firebase backend, built with Flutter.
 
 ## Documentation
 
@@ -20,6 +20,7 @@ The project is already connected to Firebase, so no extra configuration is neede
 flutter pub get
 flutter run                                   # mobile app
 flutter run -d chrome -t lib/main_admin.dart  # admin dashboard
+flutter run -t lib/main_admin.dart            # admin dashboard as a separate Android app
 ```
 
 To give an account admin access, open **Firestore → users**, select the account, and change its `role` from `user` to `admin`.

@@ -13,7 +13,12 @@
           "package_name": "com.hoa.mcommerce_app"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "118589330923-0bmr4481647uo1nb3idh73tp38vinv3f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyC-aH6-8uNEARWUlIgfYtlyFUdNpkuF5Cs"
@@ -21,7 +26,55 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "118589330923-0bmr4481647uo1nb3idh73tp38vinv3f.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "118589330923-pns9618jel49r02cg16a9uuf9ngbohic.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.hoa.mcommerceApp"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:118589330923:android:4555ae93f2c51229b675ae",
+        "android_client_info": {
+          "package_name": "com.hoa.mcommerce_app.admin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "118589330923-0bmr4481647uo1nb3idh73tp38vinv3f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-aH6-8uNEARWUlIgfYtlyFUdNpkuF5Cs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "118589330923-0bmr4481647uo1nb3idh73tp38vinv3f.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "118589330923-pns9618jel49r02cg16a9uuf9ngbohic.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.hoa.mcommerceApp"
+              }
+            }
+          ]
         }
       }
     }

@@ -73,7 +73,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
     final revenue = active.fold<double>(0, (s, o) => s + o.total);
     final delivered = orders.where((o) => o.status == OrderStatus.delivered).fold<double>(0, (s, o) => s + o.total);
     final pending = orders.where((o) => o.status == OrderStatus.pending).length;
-    final customerCount = users.where((u) => !u.isAdmin).length;
     final lowStock = products.where((p) => p.stock <= lowStockThreshold).toList()
       ..sort((a, b) => a.stock.compareTo(b.stock));
 
@@ -83,7 +82,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       StatCard(label: 'Total orders', value: '${orders.length}', icon: Icons.receipt_long_outlined, color: Colors.blue, onTap: () => widget.onNavigate(3)),
       StatCard(label: 'Pending orders', value: '$pending', icon: Icons.hourglass_top, color: Colors.orange, onTap: () => widget.onNavigate(3)),
       StatCard(label: 'Products', value: '${products.length}', icon: Icons.inventory_2_outlined, color: Colors.purple, onTap: () => widget.onNavigate(1)),
-      StatCard(label: 'Users', value: '$customerCount', icon: Icons.people_outline, color: Colors.indigo, onTap: () => widget.onNavigate(4)),
+      StatCard(label: 'Users', value: '${users.length}', icon: Icons.people_outline, color: Colors.indigo, onTap: () => widget.onNavigate(4)),
     ];
 
     return ListView(
