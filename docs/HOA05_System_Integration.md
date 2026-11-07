@@ -85,4 +85,5 @@ Tools used: the VS Code Debug Console, Flutter logs, `flutter analyze`, the Fire
 |---|---|
 | Security rules | `firebase deploy --only firestore:rules` |
 | Admin dashboard (web) | `flutter build web -t lib/main_admin.dart -o build/web_admin`, then `firebase deploy --only hosting` |
+| Customer shop (web) | `flutter build web -o build/web`, then `firebase deploy --only hosting` |
 | Android APK | `flutter build apk` (output: `build/app/outputs/flutter-apk/app-release.apk`) |

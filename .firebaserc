@@ -1,5 +1,17 @@
 {
   "projects": {
     "default": "shopease-mcommerce"
+  },
+  "targets": {
+    "shopease-mcommerce": {
+      "hosting": {
+        "admin": [
+          "shopease-mcommerce"
+        ],
+        "shop": [
+          "shopease-shop"
+        ]
+      }
+    }
   }
 }

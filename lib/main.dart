@@ -54,7 +54,42 @@ class CustomerApp extends StatelessWidget {
         title: 'ShopEase',
         debugShowCheckedModeBanner: false,
         theme: AppTheme.light(),
+        builder: (context, child) => _PhoneWidth(child: child!),
         home: const UserGate(),
+      ),
+    );
+  }
+}
+
+/// On a wide screen (the shop in a desktop browser) the app keeps a phone-sized
+/// column in the middle instead of stretching. Phones are not affected.
+class _PhoneWidth extends StatelessWidget {
+  final Widget child;
+  const _PhoneWidth({required this.child});
+
+  static const _maxWidth = 460.0;
+
+  @override
+  Widget build(BuildContext context) {
+    final media = MediaQuery.of(context);
+    if (media.size.width <= 600) return child;
+    final height = media.size.height;
+    return ColoredBox(
+      color: Palette.ink,
+      child: Center(
+        child: Padding(
+          padding: EdgeInsets.symmetric(vertical: height > 800 ? 24 : 0),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(height > 800 ? 32 : 0),
+            child: SizedBox(
+              width: _maxWidth,
+              child: MediaQuery(
+                data: media.copyWith(size: Size(_maxWidth, height - (height > 800 ? 48 : 0))),
+                child: child,
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }

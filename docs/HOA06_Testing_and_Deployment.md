@@ -147,11 +147,12 @@ Both release builds were installed on the test phone. ShopEase was signed in and
 
 ## 5. Web deployment
 
-The admin dashboard is on Firebase Hosting at <https://shopease-mcommerce.web.app>.
+The admin dashboard is on Firebase Hosting at <https://shopease-mcommerce.web.app>. The customer shop is on a second site in the same project at <https://shopease-shop.web.app>, so people can try it in a browser without installing the APK. On a computer screen it shows as a phone-sized column in the middle.
 
 ```
 flutter build web -t lib/main_admin.dart -o build/web_admin
+flutter build web -o build/web
 firebase deploy --only hosting
 ```
 
-The live site was opened in Chrome. It loaded the login page, connected to Firebase, and refused a non-admin account with "Access denied".
+The live admin site was opened in Chrome. It loaded the login page, connected to Firebase, and refused a non-admin account with "Access denied". The live shop was also opened in Chrome. A test account signed in, and the home page loaded the product list from Firestore.
