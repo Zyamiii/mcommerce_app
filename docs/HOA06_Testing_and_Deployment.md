@@ -1,6 +1,6 @@
 # HOA06: Testing, Optimization, and Deployment
 
-**Group:** Hamaza
+**Group:** Coach Productions: Shopease
 
 ## Required outputs
 

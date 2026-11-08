@@ -1,6 +1,6 @@
 # HOA01: M-Commerce System and Architecture Setup
 
-**Group:** Hamaza
+**Group:** Coach Productions: Shopease
 
 ## 1. System overview
 

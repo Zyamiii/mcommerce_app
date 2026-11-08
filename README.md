@@ -1,6 +1,6 @@
 # ShopEase: M-Commerce System
 
-ITE 7 project by Group Hamaza: a mobile shopping app and a web admin dashboard that share one Firebase backend, built with Flutter.
+ITE 7 project by Coach Productions: Shopease: a mobile shopping app and a web admin dashboard that share one Firebase backend, built with Flutter.
 
 ## Documentation
 

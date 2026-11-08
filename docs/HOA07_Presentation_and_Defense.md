@@ -1,6 +1,6 @@
 # HOA07: Final System Presentation and Defense
 
-**Group:** Hamaza
+**Group:** Coach Productions: Shopease
 
 ## 1. Presentation slides
 
