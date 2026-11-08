@@ -7,7 +7,7 @@
 | Output | Status |
 |---|---|
 | QA Checklist | Done (section 1) |
-| User Testing Results | Waiting for classmates to test (section 2) |
+| User Testing Results | Done: 2 testers (section 2) |
 | APK File | Done: `ShopEase.apk` and `ShopEase-Admin.apk` |
 | Deployed Dashboard | Done: <https://shopease-mcommerce.web.app> |
 
@@ -80,7 +80,7 @@ Card payment and category add, rename and delete were not repeated. Their logic 
 
 ## 2. User testing
 
-Classmates or students from other groups should test the app. This section stays incomplete until they have.
+Two testers used the app and answered the Google Form, one on November 6, 2026 at 12:40 PM and one the same day at 9:30 PM.
 
 ### Procedure
 
@@ -105,17 +105,25 @@ Use a Yes/No answer for questions 1 to 7, and a paragraph answer for question 8.
 
 | Question | Yes | No |
 |---|---|---|
-| Is the system easy to use? | | |
-| Did errors occur? | | |
-| Is the interface responsive? | | |
-| Was Register working? | | |
-| Was Login working? | | |
-| Was Cart working? | | |
-| Was Checkout working? | | |
+| Is the system easy to use? | 2 | 0 |
+| Did errors occur? | 0 | 2 |
+| Is the interface responsive? | 2 | 0 |
+| Was Register working? | 2 | 0 |
+| Was Login working? | 2 | 0 |
+| Was Cart working? | 2 | 0 |
+| Was Checkout working? | 2 | 0 |
 
-**Number of testers:**
+**Number of testers:** 2
 
-**Main suggestions:**
+Both testers found the system easy to use and responsive, met no errors, and said that Register, Login, Cart and Checkout all worked.
+
+**Main suggestions:** One tester asked for a way to view the password while creating an account. The other left the question blank.
+
+**What we changed:** The Login screen already had a show-password button, but the Create account screen did not. We added the same eye button to both password fields there; one tap shows or hides both. This was checked on the live web shop, and `ShopEase.apk` was rebuilt with it.
+
+![Create account with the passwords shown](screenshots/register_show_password.png)
+
+Two testers is a small sample, so these results show that the main flows worked for them, not that every user will find no problems.
 
 ## 3. Optimization
 

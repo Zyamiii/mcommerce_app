@@ -20,6 +20,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final _password = TextEditingController();
   final _confirm = TextEditingController();
   bool _busy = false;
+  bool _obscure = true;
+
+  Widget _eye() => IconButton(
+        tooltip: _obscure ? 'Show password' : 'Hide password',
+        icon: Icon(_obscure ? Icons.visibility_outlined : Icons.visibility_off_outlined),
+        onPressed: () => setState(() => _obscure = !_obscure),
+      );
 
   @override
   void dispose() {
@@ -80,15 +87,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
               const SizedBox(height: 12),
               TextFormField(
                 controller: _password,
-                obscureText: true,
-                decoration: const InputDecoration(labelText: 'Password', prefixIcon: Icon(Icons.lock_outline)),
+                obscureText: _obscure,
+                decoration: InputDecoration(
+                    labelText: 'Password', prefixIcon: const Icon(Icons.lock_outline), suffixIcon: _eye()),
                 validator: (v) => (v == null || v.length < 6) ? 'At least 6 characters' : null,
               ),
               const SizedBox(height: 12),
               TextFormField(
                 controller: _confirm,
-                obscureText: true,
-                decoration: const InputDecoration(labelText: 'Confirm password', prefixIcon: Icon(Icons.lock_outline)),
+                obscureText: _obscure,
+                decoration: InputDecoration(
+                    labelText: 'Confirm password', prefixIcon: const Icon(Icons.lock_outline), suffixIcon: _eye()),
                 validator: (v) => v != _password.text ? 'Passwords do not match' : null,
               ),
               const SizedBox(height: 24),

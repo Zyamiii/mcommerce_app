@@ -39,7 +39,7 @@ After the demo, cancel the order on the dashboard so the stock returns.
 
 ### What did you learn?
 
-We learned how to build one Flutter project that runs as both a phone app and a web dashboard. We learned how Firestore keeps two apps in sync, and why security must be enforced by database rules and not only by the app. We also learned that a clean `flutter analyze` does not prove a system works, because some bugs appeared only when we used the real apps.
+We learned how to build one Flutter project that runs as both a phone app and a web dashboard. We learned how Firestore keeps two apps in sync, and why security must be enforced by database rules and not only by the app. We also learned that a clean `flutter analyze` does not prove a system works, because some bugs appeared only when we used the real apps. User testing taught us that other people notice things we stop seeing: a tester asked for a show-password button on the Create account screen, which we had added to Login but forgot on Register.
 
 ### What challenges did you encounter?
 
@@ -89,8 +89,9 @@ No. GCash and card are simulated for this project, and the app says so at checko
 |---|---|
 | Mobile Application | Done |
 | Web Admin Dashboard | Done: <https://shopease-mcommerce.web.app> |
+| User Testing | Done: 2 testers, all Yes on the main flows (HOA06) |
 | Firebase Integration | Done |
 | GitHub Repository | Done: <https://github.com/Zyamiii/mcommerce_app> |
 | Documentation | Done: HOA01 to HOA07 in `docs/` |
-| Presentation Slides | Done, except the user testing numbers |
+| Presentation Slides | Done |
 | APK File | Done: `release/ShopEase.apk` and `release/ShopEase-Admin.apk` |
